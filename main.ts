@@ -1,3 +1,14 @@
+info.onCountdownEnd(function () {
+    if (info.score() > 10) {
+        game.gameOver(true)
+        game.setGameOverMessage(true, "You Win!")
+        game.setGameOverEffect(true, effects.confetti)
+    } else if (info.score() < 10) {
+        game.gameOver(false)
+        game.setGameOverMessage(false, "You Lost!")
+        game.setGameOverEffect(false, effects.dissolve)
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeScoreBy(2)
     sprites.destroy(otherSprite)
@@ -65,7 +76,7 @@ game.onUpdateInterval(7000, function () {
         ........................
         ........................
         `, SpriteKind.Enemy)
-    mySprite3.follow(mySprite, 50)
+    mySprite3.follow(mySprite, 45)
     mySprite.setPosition(7, 5)
 })
 game.onUpdateInterval(500, function () {
